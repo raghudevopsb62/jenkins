@@ -16,7 +16,7 @@ jobs.each {
       git {
         remote {
           name('origin')
-          url("https://github.com/raghudevopsb62/${it.git}.git")
+          url("https://github.com/raghudevopsb62/ssss.git")
         }
       }
     }

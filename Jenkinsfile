@@ -9,7 +9,7 @@ pipeline {
     SSH=credentials('CENTOS_SSH')
   }
 
-  triggers { pollSCM('H/2 * * * *') }
+  //triggers { pollSCM('H/2 * * * *') }
 
   parameters {
     string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')

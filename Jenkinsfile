@@ -5,6 +5,7 @@ pipeline {
 
   environment{
     TEST="google.com"
+    SSH=credentials('CENTOS_SSH')
   }
 
   stages {

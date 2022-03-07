@@ -26,7 +26,10 @@ pipeline {
 
 
   post {
-    sh 'Hello'
+    always {
+      sh 'Hello'
+    }
+
   }
 
 }

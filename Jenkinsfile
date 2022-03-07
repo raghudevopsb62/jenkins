@@ -2,11 +2,18 @@
 
 pipeline {
   agent {label 'terraform && jenkins'}
+
+  environment{
+    TEST="google.com"
+  }
+
   stages {
 
     stage('Terraform INIT') {
       steps {
         sh 'echo Hello World'
+        sh 'echo'
+        sh 'echo ${TEST}'
       }
     }
 

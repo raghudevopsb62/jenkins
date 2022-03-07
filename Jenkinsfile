@@ -29,6 +29,7 @@ pipeline {
         sh 'echo ${TEST}'
         sh 'echo ${SSH}'
         //sh 'sleep 30'
+        sh 'echo ${PERSON}'
       }
     }
 

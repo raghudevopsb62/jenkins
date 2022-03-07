@@ -3,10 +3,24 @@
 pipeline {
   agent any
   stages {
-    stage('Sample') {
+
+    stage('Terraform INIT') {
       steps {
         sh 'echo Hello World'
       }
     }
+
+    stage('Terraform Plan') {
+      steps {
+        sh 'echo Hello World'
+      }
+    }
+
+    stage('Terraform Apply') {
+      steps {
+        sh 'echo Hello World'
+      }
+    }
+
   }
 }

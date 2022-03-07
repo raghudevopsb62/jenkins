@@ -1,10 +1,11 @@
 // pipeline -> stages -> stage -> steps -> step
 
 pipeline {
-  agent any
+  agent none
   stages {
 
     stage('Terraform INIT') {
+      agent node { label 'workstation' }
       steps {
         sh 'echo Hello World'
       }

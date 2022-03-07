@@ -1,4 +1,5 @@
 // pipeline -> stages -> stage -> steps -> step
+properties([pipelineTriggers([githubPush()])])
 
 pipeline {
   agent {label 'terraform && jenkins'}

@@ -1,7 +1,7 @@
 // pipeline -> stages -> stage -> steps -> step
 
 pipeline {
-  agent {label 'terraform'}
+  agent {label 'terraform && jenkins'}
   stages {
 
     stage('Terraform INIT') {

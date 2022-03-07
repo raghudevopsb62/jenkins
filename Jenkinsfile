@@ -15,7 +15,7 @@ pipeline {
         sh 'echo Hello World'
         sh 'echo'
         sh 'echo ${TEST}'
-        sh 'echo ${CENTOS_SSH}'
+        sh 'echo ${SSH}'
       }
     }
 

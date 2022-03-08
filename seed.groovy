@@ -40,10 +40,17 @@ folder('Terraform') {
 //
 //}
 
-pipelineJob('example') {
+pipelineJob('github-demo') {
   definition {
     cpsScm {
-      github('jenkinsci/job-dsl-plugin')
+      scm {
+        git {
+          remote {
+            github('raghudevopsb62/jenkins')
+          }
+        }
+      }
+      scriptPath('Jenkinsfile')
     }
   }
 }

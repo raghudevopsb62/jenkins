@@ -38,7 +38,7 @@ cat <<EOF >/tmp/job.xml
     <data>
       <jenkins.branch.BranchSource>
         <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.10.3">
-          <id>123456789</id>
+          <id>123456780</id>
           <remote>GIT_URL</remote>
           <credentialsId></credentialsId>
           <traits>

@@ -44,7 +44,7 @@ cat <<EOF >/tmp/job.xml
           <traits>
             <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
             <jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait plugin="scm-api@595.vd5a_df5eb_0e39">
-              <includes>**</includes>
+              <includes>*</includes>
               <excludes></excludes>
             </jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait>
           </traits>

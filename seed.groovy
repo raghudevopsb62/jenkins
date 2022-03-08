@@ -58,7 +58,7 @@ def jobs= [
 
 multibranchPipelineJob('example') {
   triggers {
-    cron('H/1 * * * *')
+    periodic(5)
   }
   branchSources {
     git {

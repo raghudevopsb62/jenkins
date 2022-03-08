@@ -34,7 +34,7 @@ cat <<EOF >/tmp/job.xml
     </com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger>
   </triggers>
   <disabled>false</disabled>
-  <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.7.0">
+  <sources class="jenkins.branch.MultiBranchProject\$BranchSourceList" plugin="branch-api@2.7.0">
     <data>
       <jenkins.branch.BranchSource>
         <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.10.3">
@@ -44,7 +44,7 @@ cat <<EOF >/tmp/job.xml
           <traits>
             <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
             <jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait plugin="scm-api@595.vd5a_df5eb_0e39">
-              <includes>*</includes>
+              <includes>**</includes>
               <excludes></excludes>
             </jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait>
           </traits>

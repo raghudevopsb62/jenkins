@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat <<EOF >/tmp/job.yml
+cat <<EOF >/tmp/job.xml
 <?xml version='1.1' encoding='UTF-8'?>
 <org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch">
   <actions/>

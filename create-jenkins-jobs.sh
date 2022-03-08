@@ -6,44 +6,44 @@
 
 cat <<EOF >/tmp/job.xml
 <?xml version='1.1' encoding='UTF-8'?>
-<org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch">
+<org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch@711.vdfef37cda_816">
   <actions/>
   <description></description>
   <properties/>
-  <folderViews class="jenkins.branch.MultiBranchProjectViewHolder" plugin="branch-api">
+  <folderViews class="jenkins.branch.MultiBranchProjectViewHolder" plugin="branch-api@2.7.0">
     <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
   </folderViews>
   <healthMetrics>
-    <com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric plugin="cloudbees-folder">
+    <com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric plugin="cloudbees-folder@6.708.ve61636eb_65a_5">
       <nonRecursive>false</nonRecursive>
     </com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric>
   </healthMetrics>
-  <icon class="jenkins.branch.MetadataActionFolderIcon" plugin="branch-api">
+  <icon class="jenkins.branch.MetadataActionFolderIcon" plugin="branch-api@2.7.0">
     <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
   </icon>
-  <orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder">
+  <orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder@6.708.ve61636eb_65a_5">
     <pruneDeadBranches>true</pruneDeadBranches>
     <daysToKeep>-1</daysToKeep>
     <numToKeep>-1</numToKeep>
     <abortBuilds>false</abortBuilds>
   </orphanedItemStrategy>
   <triggers>
-    <com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger plugin="cloudbees-folder">
+    <com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger plugin="cloudbees-folder@6.708.ve61636eb_65a_5">
       <spec>* * * * *</spec>
       <interval>INTERVAL</interval>
     </com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger>
   </triggers>
   <disabled>false</disabled>
-  <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api">
+  <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api@2.7.0">
     <data>
       <jenkins.branch.BranchSource>
-        <source class="jenkins.plugins.git.GitSCMSource" plugin="git">
+        <source class="jenkins.plugins.git.GitSCMSource" plugin="git@4.10.3">
           <id>123456789</id>
           <remote>GIT_URL</remote>
           <credentialsId></credentialsId>
           <traits>
             <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
-            <jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait plugin="scm-api">
+            <jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait plugin="scm-api@595.vd5a_df5eb_0e39">
               <includes>**</includes>
               <excludes></excludes>
             </jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait>

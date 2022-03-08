@@ -1,8 +1,8 @@
 #!/bin/bash
 
 [ -z "${INTERVAL}" ] && INTERVAL=120000
-[ -z "${JOB_NAME}" ] && echo JOB NAME NEEDED && exit 1
-[ -z "${GIT_URL}" ] && echo GIT URL NEEDED && exit 1
+[ -z "${JOB_NAME}" ] && echo JOB_NAME NEEDED && exit 1
+[ -z "${GIT_URL}" ] && echo GIT_URL NEEDED && exit 1
 
 cat <<EOF >/tmp/job.xml
 <?xml version='1.1' encoding='UTF-8'?>

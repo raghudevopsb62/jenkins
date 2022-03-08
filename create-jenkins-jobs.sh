@@ -1,5 +1,9 @@
 #!/bin/bash
 
+[ -z "${INTERVAL}" ] && INTERVAL=120000
+[ -z "${JOB_NAME}" ] && echo JOB NAME NEEDED && exit 1
+[ -z "${GIT_URL}" ] && echo GIT URL NEEDED && exit 1
+
 cat <<EOF >/tmp/job.xml
 <?xml version='1.1' encoding='UTF-8'?>
 <org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch">
@@ -58,3 +62,6 @@ cat <<EOF >/tmp/job.xml
   </factory>
 </org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>
 EOF
+
+sed -i -e "s|INTERVAL|${INTERVAL}|" -e "s|GIT_URL|${GIT_URL}|" /tmp/job.xml
+cat /tmp/job/xml | java -jar ~/jenkins-cli.jar -auth admin:admin -s http://172.31.14.253:8080/ -webSocket create-job ${JOB_NAME}

@@ -34,25 +34,39 @@ def jobs= [
 ]
 
 
-jobs.each {
-  def newmap = it;
-  x = it.git
+//jobs.each {
+//  def newmap = it;
+//  x = it.git
+//
+//  pipelineJob("Terraform/${it.name}") {
+//    definition {
+//      cpsScm {
+//        scm {
+//          git {
+//            remote {
+//              url("https://github.com/raghudevopsb62/${x}.git")
+//            }
+//          }
+//        }
+//        scriptPath('Jenkinsfile')
+//      }
+//    }
+//  }
+//
+//}
+//
 
-  pipelineJob("Terraform/${it.name}") {
-    definition {
-      cpsScm {
-        scm {
-          git {
-            remote {
-              url("https://github.com/raghudevopsb62/${x}.git")
-            }
-          }
-        }
-        scriptPath('Jenkinsfile')
-      }
+multibranchPipelineJob('example') {
+  branchSources {
+    git {
+      id('123456789') // IMPORTANT: use a constant and unique identifier
+      remote('https://github.com/raghudevopsb62/terraform-vpc.git')
+      includes('**')
     }
   }
-
+  orphanedItemStrategy {
+    discardOldItems {
+      numToKeep(0)
+    }
+  }
 }
-
-

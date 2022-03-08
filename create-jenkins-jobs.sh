@@ -1,59 +1,60 @@
 #!/bin/bash
 
 cat <<EOF >/tmp/job.yml
-org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject:
-  actions: ''
-  description: ''
-  properties: ''
-  folderViews:
-    owner:
-      _class: org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
-      _reference: ../..
-    _class: jenkins.branch.MultiBranchProjectViewHolder
-  healthMetrics:
-    com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric:
-      nonRecursive: 'false'
-  icon:
-    owner:
-      _class: org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
-      _reference: ../..
-    _class: jenkins.branch.MetadataActionFolderIcon
-  orphanedItemStrategy:
-    pruneDeadBranches: 'true'
-    daysToKeep: '-1'
-    numToKeep: '-1'
-    abortBuilds: 'false'
-    _class: com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy
-  triggers:
-    com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger:
-      spec: '* * * * *'
-      interval: 'INTERNAL'
-  disabled: 'false'
-  sources:
-    data:
-      jenkins.branch.BranchSource:
-        source:
-          id: 'UNIQUEID'
-          remote: GIT_URL
-          credentialsId: ''
-          traits:
-            jenkins.plugins.git.traits.BranchDiscoveryTrait: ''
-            jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait:
-              includes: '**'
-              excludes: ''
-          _class: jenkins.plugins.git.GitSCMSource
-        strategy:
-          properties:
-            _class: empty-list
-          _class: jenkins.branch.DefaultBranchPropertyStrategy
-    owner:
-      _class: org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
-      _reference: ../..
-    _class: jenkins.branch.MultiBranchProject$BranchSourceList
-  factory:
-    owner:
-      _class: org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject
-      _reference: ../..
-    scriptPath: Jenkinsfile
-    _class: org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory
+<?xml version='1.1' encoding='UTF-8'?>
+<org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch">
+  <actions/>
+  <description></description>
+  <properties/>
+  <folderViews class="jenkins.branch.MultiBranchProjectViewHolder" plugin="branch-api">
+    <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+  </folderViews>
+  <healthMetrics>
+    <com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric plugin="cloudbees-folder">
+      <nonRecursive>false</nonRecursive>
+    </com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric>
+  </healthMetrics>
+  <icon class="jenkins.branch.MetadataActionFolderIcon" plugin="branch-api">
+    <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+  </icon>
+  <orphanedItemStrategy class="com.cloudbees.hudson.plugins.folder.computed.DefaultOrphanedItemStrategy" plugin="cloudbees-folder">
+    <pruneDeadBranches>true</pruneDeadBranches>
+    <daysToKeep>-1</daysToKeep>
+    <numToKeep>-1</numToKeep>
+    <abortBuilds>false</abortBuilds>
+  </orphanedItemStrategy>
+  <triggers>
+    <com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger plugin="cloudbees-folder">
+      <spec>* * * * *</spec>
+      <interval>INTERVAL</interval>
+    </com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger>
+  </triggers>
+  <disabled>false</disabled>
+  <sources class="jenkins.branch.MultiBranchProject$BranchSourceList" plugin="branch-api">
+    <data>
+      <jenkins.branch.BranchSource>
+        <source class="jenkins.plugins.git.GitSCMSource" plugin="git">
+          <id>123456789</id>
+          <remote>GIT_URL</remote>
+          <credentialsId></credentialsId>
+          <traits>
+            <jenkins.plugins.git.traits.BranchDiscoveryTrait/>
+            <jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait plugin="scm-api">
+              <includes>**</includes>
+              <excludes></excludes>
+            </jenkins.scm.impl.trait.WildcardSCMHeadFilterTrait>
+          </traits>
+        </source>
+        <strategy class="jenkins.branch.DefaultBranchPropertyStrategy">
+          <properties class="empty-list"/>
+        </strategy>
+      </jenkins.branch.BranchSource>
+    </data>
+    <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+  </sources>
+  <factory class="org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory">
+    <owner class="org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject" reference="../.."/>
+    <scriptPath>Jenkinsfile</scriptPath>
+  </factory>
+</org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject>
 EOF

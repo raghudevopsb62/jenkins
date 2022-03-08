@@ -57,9 +57,7 @@ def jobs= [
 //
 
 multibranchPipelineJob('example') {
-  triggers {
-    periodic(5)
-  }
+
   branchSources {
     git {
       id('123456789') // IMPORTANT: use a constant and unique identifier

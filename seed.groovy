@@ -46,7 +46,7 @@ pipelineJob('github-demo') {
       scm {
         git {
           remote {
-            github('raghudevopsb62/jenkins')
+            url('https://github.com/raghudevopsb62/jenkins.git')
           }
         }
       }

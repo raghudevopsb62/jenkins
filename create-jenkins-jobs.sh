@@ -64,4 +64,4 @@ cat <<EOF >/tmp/job.xml
 EOF
 
 sed -i -e "s|INTERVAL|${INTERVAL}|" -e "s|GIT_URL|${GIT_URL}|" /tmp/job.xml
-cat /tmp/job/xml | java -jar ~/jenkins-cli.jar -auth admin:admin -s http://172.31.14.253:8080/ -webSocket create-job ${JOB_NAME}
+cat /tmp/job.xml | java -jar ~/jenkins-cli.jar -auth admin:admin -s http://172.31.14.253:8080/ -webSocket create-job ${JOB_NAME}

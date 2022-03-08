@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat <<EOF
+cat <<EOF >/tmp/job.yml
 org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject:
   actions: ''
   description: ''
@@ -56,4 +56,4 @@ org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject:
       _reference: ../..
     scriptPath: Jenkinsfile
     _class: org.jenkinsci.plugins.workflow.multibranch.WorkflowBranchProjectFactory
-EOF >/tmp/job.yaml
+EOF

@@ -1,9 +1,15 @@
 #!/bin/bash
 
-[ -z "${INTERVAL}" ] && INTERVAL=120000
-[ -z "${JOB_NAME}" ] && echo JOB_NAME NEEDED && exit 1
-[ -z "${GIT_URL}" ] && echo GIT_URL NEEDED && exit 1
+cat <<EOF >/tmp/jobs
+Terraform,VPC,https://github.com/raghudevopsb62/terraform-vpc,123456780,120000
+Terraform,DB,https://github.com/raghudevopsb62/terraform-databases,123456781,120000
+EOF
 
+for job in $(cat /tmp/jobs); do
+    echo $job
+    echo
+  done
+exit 
 cat <<EOF >/tmp/job.xml
 <?xml version='1.1' encoding='UTF-8'?>
 <org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch@711.vdfef37cda_816">

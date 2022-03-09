@@ -18,7 +18,7 @@ cat <<EOF >/tmp/folder.xml
                 <name>all</name>
                 <filterExecutors>false</filterExecutors>
                 <filterQueue>false</filterQueue>
-                <properties class="hudson.model.View$PropertyList"/>
+                <properties class="hudson.model.View\$PropertyList"/>
             </hudson.model.AllView>
         </views>
         <tabBar class="hudson.views.DefaultViewsTabBar"/>

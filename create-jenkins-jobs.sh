@@ -33,7 +33,7 @@ cat <<EOF >/tmp/folder.xml
 EOF
 
 cat <<EOF >/tmp/job.xml
-  <?xml version='1.1' encoding='UTF-8'?>
+<?xml version='1.1' encoding='UTF-8'?>
   <org.jenkinsci.plugins.workflow.multibranch.WorkflowMultiBranchProject plugin="workflow-multibranch@711.vdfef37cda_816">
     <actions/>
     <description></description>

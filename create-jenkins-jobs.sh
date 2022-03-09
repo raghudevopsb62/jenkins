@@ -102,4 +102,5 @@ EOF
   sed -i -e "s|FOLDER|${DIR}|"  /tmp/folder.xml
   cat /tmp/folder.xml | java -jar ~/jenkins-cli.jar -auth admin:admin -s http://172.31.14.253:8080/ -webSocket create-job ${DIR}
   cat /tmp/job.xml | java -jar ~/jenkins-cli.jar -auth admin:admin -s http://172.31.14.253:8080/ -webSocket create-job ${JOB_NAME}
+  exit
 done

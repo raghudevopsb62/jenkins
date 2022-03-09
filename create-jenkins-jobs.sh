@@ -3,6 +3,7 @@
 cat <<EOF >/tmp/jobs
 Terraform,VPC,https://github.com/raghudevopsb62/terraform-vpc,123456780,120000
 Terraform,DB,https://github.com/raghudevopsb62/terraform-databases,123456781,120000
+Terraform,Muable-Ec2-Module,https://github.com/raghudevopsb62/terraform-mutable-ec2.git,123456782,120000
 EOF
 
 for job in $(cat /tmp/jobs); do

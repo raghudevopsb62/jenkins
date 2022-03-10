@@ -110,13 +110,13 @@ curl "https://api.github.com/repos/raghudevopsb62/${GIT_ORG_REPO_NAME}/hooks" \
      -H "Authorization: Token ${GIT_TOKEN}" \
      -d @- << EOF
 {
-  "name": "jenkins",
+  "name": "web",
   "active": true,
   "events": [
     "*"
   ],
   "config": {
-    "url": "http://3.238.2.35:8080/multibranch-webhook-trigger/invoke?token=EC2-MODULE",
+    "url": "http://3.238.2.35:8080/multibranch-webhook-trigger/invoke?token=${JOB_ID}",
     "content_type": "json"
   }
 }

@@ -1,9 +1,9 @@
 #!/bin/bash
 
 cat <<EOF >/tmp/jobs
-Terraform,VPC,https://github.com/raghudevopsb62/terraform-vpc,123456780,120000
-Terraform,DB,https://github.com/raghudevopsb62/terraform-databases,123456781,120000
-Terraform,Muable-Ec2-Module,https://github.com/raghudevopsb62/terraform-mutable-ec2.git,123456782,120000
+Terraform,VPC,https://github.com/raghudevopsb62/terraform-vpc,123456780,120000,yes
+Terraform,DB,https://github.com/raghudevopsb62/terraform-databases,123456781,120000,yes
+Terraform,Muable-Ec2-Module,https://github.com/raghudevopsb62/terraform-mutable-ec2.git,123456782,120000,yes
 EOF
 
 for job in $(cat /tmp/jobs); do
@@ -103,4 +103,24 @@ EOF
   sed -i -e "s|FOLDER|${DIR}|"  /tmp/folder.xml
   cat /tmp/folder.xml | java -jar ~/jenkins-cli.jar -auth admin:admin -s http://172.31.14.253:8080/ -webSocket create-job ${DIR}
   cat /tmp/job.xml | java -jar ~/jenkins-cli.jar -auth admin:admin -s http://172.31.14.253:8080/ -webSocket create-job ${JOB_NAME}
+  if [ "$(echo $job | awk -F , '{print $6}')" == "yes" ]; then
+
+    GIT_ORG_REPO_NAME=$(echo $GIT_URL | awk -F / '{print $5}' | sed 's/.git$//')
+curl "https://api.github.com/repos/raghudevopsb62/${GIT_ORG_REPO_NAME}/hooks" \
+     -H "Authorization: Token ${GIT_TOKEN}" \
+     -d @- << EOF
+{
+  "name": "jenkins",
+  "active": true,
+  "events": [
+    "*"
+  ],
+  "config": {
+    "url": "http://3.238.2.35:8080/multibranch-webhook-trigger/invoke?token=EC2-MODULE",
+    "content_type": "json"
+  }
+}
+EOF
+
+  fi
 done

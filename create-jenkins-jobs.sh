@@ -57,11 +57,11 @@ cat <<EOF >/tmp/job.xml
       <abortBuilds>false</abortBuilds>
     </orphanedItemStrategy>
     <triggers>
-      <com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger plugin="cloudbees-folder@6.708.ve61636eb_65a_5">
-        <spec>* * * * *</spec>
-        <interval>INTERVAL</interval>
-      </com.cloudbees.hudson.plugins.folder.computed.PeriodicFolderTrigger>
-    </triggers>
+        <com.igalg.jenkins.plugins.mswt.trigger.ComputedFolderWebHookTrigger plugin="multibranch-scan-webhook-trigger@1.0.9">
+          <spec></spec>
+          <token>JOB_ID</token>
+        </com.igalg.jenkins.plugins.mswt.trigger.ComputedFolderWebHookTrigger>
+      </triggers>
     <disabled>false</disabled>
     <sources class="jenkins.branch.MultiBranchProject\$BranchSourceList" plugin="branch-api@2.7.0">
       <data>

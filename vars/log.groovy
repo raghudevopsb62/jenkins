@@ -7,7 +7,6 @@
 //}
 
 
-
 def call() {
   def SAMPLE_URL = "yahoo.com"
   pipeline {

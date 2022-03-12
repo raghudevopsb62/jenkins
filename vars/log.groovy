@@ -6,9 +6,10 @@
 //  echo "WARNING: ${message}"
 //}
 
-def SAMPLE_URL = "yahoo.com"
+
 
 def call() {
+  def SAMPLE_URL = "yahoo.com"
   pipeline {
     agent none
     stages {

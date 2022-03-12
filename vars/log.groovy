@@ -8,7 +8,9 @@
 
 
 def call() {
-  def SAMPLE_URL = "yahoo.com"
+  if (! env.SAMPLE_URL) {
+    env.SAMPLE_URL = "yahoo.com"
+  }
   pipeline {
     agent none
     stages {

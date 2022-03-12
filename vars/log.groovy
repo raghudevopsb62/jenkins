@@ -15,6 +15,7 @@ def call() {
           // log.info 'Starting'
           script {
             print 'hello'
+            print "SAMPLE URL = ${SAMPLE_URL}"
           }
         }
       }

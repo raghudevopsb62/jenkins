@@ -97,6 +97,6 @@
 //log.info 'Starting'
 //log.warning 'Nothing to do!'
 
-
+env.SAMPLE_URL="google.com"
 log()
 

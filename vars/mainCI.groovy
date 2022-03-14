@@ -13,15 +13,15 @@ def call() {
     }
 
     def s = checkout scm
-    //common.checkRelease()
-    //common.createRelease(s.GIT_URL)
+    common.checkRelease()
+    common.createRelease(s.GIT_URL)
 
     if(env.TYPE == "nodejs") {
       nodejs.downloadDependencies()
       nodejs.makeArtifacts()
     }
 
-    common.publishArtifacts() 
+    common.publishArtifacts()
 
   }
 }

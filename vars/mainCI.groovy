@@ -22,6 +22,10 @@ def call() {
       maven.makeArtifacts()
     }
 
+    if(env.TYPE == "python") {
+      python.makeArtifacts()
+    }
+
     common.publishArtifacts()
     common.createRelease(s.GIT_URL)
 

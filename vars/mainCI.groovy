@@ -8,10 +8,7 @@ def call() {
   NODE = null
   node {
 
-    environment {
-      TOKEN = credentials('GITHUB_TOKEN')
-    }
-
+    sh 'find . | grep -v \'^.$\'  | xargs rm -rf'
     def s = checkout scm
     common.checkRelease()
     common.createRelease(s.GIT_URL)

@@ -8,6 +8,8 @@ CI,cart,https://github.com/raghudevopsb62/cart.git,123456784,yes
 CI,catalogue,https://github.com/raghudevopsb62/catalogue.git,123456785,yes
 CI,user,https://github.com/raghudevopsb62/user.git,123456786,yes
 CI,shipping,https://github.com/raghudevopsb62/shipping.git,123456787,yes
+CI,payment,https://github.com/raghudevopsb62/payment.git,123456788,yes
+CI,frontend,https://github.com/raghudevopsb62/frontend.git,123456788,yes
 EOF
 
 for job in $(cat /tmp/jobs); do

@@ -18,6 +18,7 @@ def call() {
 
     if(env.TYPE == "nodejs") {
       nodejs.downloadDependencies()
+      nodejs.makeArtifacts()
     }
 
 //      stage('Download Dependencies') {

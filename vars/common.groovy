@@ -1,6 +1,6 @@
 def checkRelease() {
   stage('Check Release') {
-    if (GIT_BRANCH == "main") {
+    if (env.GIT_BRANCH == "main") {
       script {
         def statusCode = sh script:"git ls-remote --tags origin | grep \$(cat VERSION | grep '^#' | head -1| sed -e 's|#|v|')", returnStatus:true
         if (statusCode == 0) {
@@ -10,6 +10,7 @@ def checkRelease() {
       }
     } else {
       println 'none worked'
+      sh 'env'
     }
   }
 }

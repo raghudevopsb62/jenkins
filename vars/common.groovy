@@ -24,15 +24,17 @@ def createRelease(String GIT_URL) {
       if (statusCode == 0) {
         error "VERSION is already tagged, Use new version number"
       } else {
-        sh '''
-      rm -rf temp && mkdir temp 
-      GIT_URL=$(echo $GIT_URL | sed -e "s|github.com|${TOKEN}@github.com|")
-      cd temp
-      git clone $GIT_URL .
-      TAG=$(cat VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#|v|")
-      git tag $TAG 
-      git push --tags                  
-    '''
+          withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'TOKEN')]) {
+          sh '''
+            rm -rf temp && mkdir temp 
+            GIT_URL=$(echo $GIT_URL | sed -e "s|github.com|${TOKEN}@github.com|")
+            cd temp
+            git clone $GIT_URL .
+            TAG=$(cat VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#|v|")
+            git tag $TAG 
+            git push --tags                  
+          '''
+          }
       }
     }
   }

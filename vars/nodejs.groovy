@@ -19,19 +19,21 @@ def call() {
     }
 
     stages {
-
-      stage('Check Release') {
-        when {
-          expression {
-            GIT_BRANCH == "main"
+      node {
+        stage('Check Release') {
+          when {
+            expression {
+              GIT_BRANCH == "main"
+            }
           }
-        }
-        steps {
-          script {
-            common.checkRelease()
+          steps {
+            script {
+              common.checkRelease()
+            }
           }
         }
       }
+
 
       stage('Create Release') {
         when {

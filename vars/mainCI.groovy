@@ -18,6 +18,11 @@ def call() {
       nodejs.makeArtifacts()
     }
 
+    if(env.TYPE == "maven") {
+      maven.makePackage()
+      maven.makeArtifacts()
+    }
+
     common.publishArtifacts()
 
   }

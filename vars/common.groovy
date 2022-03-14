@@ -8,6 +8,8 @@ def checkRelease() {
           skipRemainingStages = true
         }
       }
+    } else {
+      println 'none worked'
     }
   }
 }

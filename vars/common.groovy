@@ -39,3 +39,18 @@ def createRelease(String GIT_URL) {
     }
   }
 }
+
+def publishArtifacts() {
+  if (!env.skipRemainingStages) {
+    stage('Make Artifacts') {
+      withCredentials([usernameColonPassword(credentialsId: 'NEXUS', variable: 'USERPASS')]) {
+        sh '''
+          TAG=$(cat VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#|v|")
+          curl -f -v -u ${USERPASS} --upload-file ${COMPONENT}-${TAG}.zip http://172.31.9.227:8081/repository/${COMPONENT}/${COMPONENT}-${TAG}.zip
+        '''
+      }
+
+    }
+  }
+}
+

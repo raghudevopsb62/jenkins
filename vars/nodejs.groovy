@@ -6,7 +6,6 @@ def downloadDependencies() {
   }
 }
 
-
 def makeArtifacts() {
   if (!env.skipRemainingStages) {
     stage('Make Artifacts') {
@@ -19,3 +18,4 @@ def makeArtifacts() {
     }
   }
 }
+

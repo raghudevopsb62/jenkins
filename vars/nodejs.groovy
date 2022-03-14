@@ -76,11 +76,11 @@ def call() {
 //
 //
 //
-//    post {
-//      always {
-//        cleanWs()
-//      }
-//    }
+    post {
+      always {
+        cleanWs()
+      }
+    }
 
   }
 }

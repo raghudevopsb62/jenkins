@@ -11,7 +11,7 @@ def call() {
     environment {
       TOKEN = credentials('GITHUB_TOKEN')
     }
-
+      sh 'env'
       common.checkRelease()
 
 //      stage('Create Release') {

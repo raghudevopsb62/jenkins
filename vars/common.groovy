@@ -1,7 +1,7 @@
 def checkRelease() {
   stage('Check Release') {
+    NODE = 'workstation'
     if (env.BRANCH_NAME == "main") {
-      script {
         sh 'pwd'
         sh 'ls -l '
         def statusCode = sh script:"git ls-remote --tags origin | grep \$(cat VERSION | grep '^#' | head -1| sed -e 's|#|v|')", returnStatus:true
@@ -9,7 +9,6 @@ def checkRelease() {
           println "VERSION mentioned in main branch has already been tagged"
           skipRemainingStages = true
         }
-      }
     } else {
       println 'none worked'
       sh 'env'

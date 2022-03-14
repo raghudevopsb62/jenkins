@@ -5,8 +5,8 @@ def call() {
     println "Component Missing"
     System.exit(1)
   }
-
-  node('workstation') {
+  NODE = null
+  node {
 
     environment {
       TOKEN = credentials('GITHUB_TOKEN')

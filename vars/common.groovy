@@ -19,9 +19,6 @@ def checkRelease() {
 def createRelease() {
   if (! env.skipRemainingStages) {
     stage('Create Release') {
-      //NODE = 'workstation'
-      sh 'pwd'
-      sh 'ls -l '
       def statusCode = sh script: "git ls-remote --tags origin | grep \$(cat VERSION | grep '^#' | head -1| sed -e 's|#|v|')", returnStatus: true
       if (statusCode == 0) {
         error "VERSION is already tagged, Use new version number"

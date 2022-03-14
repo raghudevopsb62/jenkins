@@ -11,7 +11,8 @@ def call() {
     environment {
       TOKEN = credentials('GITHUB_TOKEN')
     }
-    checkout scm
+    def s = checkout scm
+    println s
     common.checkRelease()
     common.createRelease()
 

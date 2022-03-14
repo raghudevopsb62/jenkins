@@ -13,6 +13,7 @@ def call() {
     }
       checkout scm
       common.checkRelease()
+      common.createRelease()
 
 //      stage('Create Release') {
 //        when {

@@ -24,7 +24,7 @@ def createRelease() {
         error "VERSION is already tagged, Use new version number"
       } else {
         sh '''
-      mkdir temp 
+      rm -rf temp && mkdir temp 
       GIT_URL=$(echo $GIT_URL | sed -e "s|github.com|${TOKEN}@github.com|")
       cd temp
       git clone $GIT_URL .

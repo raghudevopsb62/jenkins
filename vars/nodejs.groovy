@@ -14,7 +14,7 @@ def call() {
     def s = checkout scm
     println s
     common.checkRelease()
-    common.createRelease()
+    common.createRelease(s.GIT_URL)
 
 //      stage('Create Release') {
 //        when {

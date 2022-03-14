@@ -16,7 +16,7 @@ def checkRelease() {
   }
 }
 
-def createRelease() {
+def createRelease(GIT_URL) {
   if (! env.skipRemainingStages) {
     stage('Create Release') {
       def statusCode = sh script: "git ls-remote --tags origin | grep \$(cat VERSION | grep '^#' | head -1| sed -e 's|#|v|')", returnStatus: true

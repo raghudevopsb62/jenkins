@@ -26,6 +26,10 @@ def call() {
       python.makeArtifacts()
     }
 
+    if(env.TYPE == "nginx") {
+      nginx.makeArtifacts()
+    }
+
     common.publishArtifacts()
     common.createRelease(s.GIT_URL)
 

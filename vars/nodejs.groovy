@@ -12,7 +12,7 @@ def call() {
       TOKEN = credentials('GITHUB_TOKEN')
     }
     def s = checkout scm
-    println s
+    println s.GIT_URL
     common.checkRelease()
     common.createRelease(s.GIT_URL)
 

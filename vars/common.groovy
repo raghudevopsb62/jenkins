@@ -16,7 +16,7 @@ def checkRelease() {
   }
 }
 
-def createRelease(GIT_URL) {
+def createRelease(String GIT_URL) {
   println $GIT_URL
   if (! env.skipRemainingStages) {
     stage('Create Release') {

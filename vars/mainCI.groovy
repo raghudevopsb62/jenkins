@@ -11,7 +11,6 @@ def call() {
     sh 'find . | grep -v \'^.$\'  | xargs rm -rf'
     def s = checkout scm
     common.checkRelease()
-    common.createRelease(s.GIT_URL)
 
     if(env.TYPE == "nodejs") {
       nodejs.downloadDependencies()
@@ -24,6 +23,7 @@ def call() {
     }
 
     common.publishArtifacts()
+    common.createRelease(s.GIT_URL)
 
   }
 }

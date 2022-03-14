@@ -19,7 +19,7 @@ def checkRelease() {
 def createRelease(String GIT_URL) {
   env.GIT_URL = GIT_URL
   if (! env.skipRemainingStages) {
-    stage('Create Release') {
+    stage('Create Release to GIT Tags') {
       def statusCode = sh script: "git ls-remote --tags origin | grep \$(cat VERSION | grep '^#' | head -1| sed -e 's|#|v|')", returnStatus: true
       if (statusCode == 0) {
         error "VERSION is already tagged, Use new version number"
@@ -42,7 +42,7 @@ def createRelease(String GIT_URL) {
 
 def publishArtifacts() {
   if (!env.skipRemainingStages) {
-    stage('Make Artifacts') {
+    stage('Make Artifacts to NEXUS') {
       withCredentials([usernameColonPassword(credentialsId: 'NEXUS', variable: 'USERPASS')]) {
         sh '''
           TAG=$(cat VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#|v|")

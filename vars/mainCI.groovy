@@ -17,7 +17,7 @@ def call() {
     //common.createRelease(s.GIT_URL)
 
     if(env.TYPE == "nodejs") {
-      nodejs.downloadDependencies
+      nodejs.downloadDependencies()
     }
 
 //      stage('Download Dependencies') {

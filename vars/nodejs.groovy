@@ -11,9 +11,9 @@ def call() {
     environment {
       TOKEN = credentials('GITHUB_TOKEN')
     }
-      checkout scm
-      common.checkRelease()
-      common.createRelease()
+    checkout scm
+    common.checkRelease()
+    common.createRelease()
 
 //      stage('Create Release') {
 //        when {

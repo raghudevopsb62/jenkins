@@ -3,6 +3,7 @@
 cat <<EOF >/tmp/jobs
 Terraform,VPC,https://github.com/raghudevopsb62/terraform-vpc,123456780,yes
 Terraform,DB,https://github.com/raghudevopsb62/terraform-databases,123456781,yes
+Terraform,ALB,https://github.com/raghudevopsb62/terraform-mutable-alb,123456779,yes
 Terraform,Muable-Ec2-Module,https://github.com/raghudevopsb62/terraform-mutable-ec2.git,123456782,yes
 CI,cart,https://github.com/raghudevopsb62/cart.git,123456784,yes
 CI,catalogue,https://github.com/raghudevopsb62/catalogue.git,123456785,yes

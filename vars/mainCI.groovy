@@ -14,6 +14,7 @@ def call() {
 
     common.unitTests()
     common.integrationTests()
+    
     if(env.TYPE == "nodejs") {
       nodejs.downloadDependencies()
       nodejs.makeArtifacts()

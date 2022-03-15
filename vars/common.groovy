@@ -71,7 +71,7 @@ def sonarScan() {
   stage('Sonar Scan') {
     withCredentials([string(credentialsId: 'SONAR', variable: 'TOKEN')]) {
       sh '''               
-        sonar-scanner -Dsonar.login=${TOKEN} -Dsonar.projectKey=${COMPONENT} -Dsonar.sources=.
+        sonar-scanner -Dsonar.login=${TOKEN} -Dsonar.projectKey=${COMPONENT} -Dsonar.sources=. -Dsonar.host.url=http://172.31.2.202:9000
       '''
     }
   }

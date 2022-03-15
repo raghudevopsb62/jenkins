@@ -12,6 +12,7 @@ def call() {
     def s = checkout scm
     common.checkRelease()
 
+    common.unitTests()
     if(env.TYPE == "nodejs") {
       nodejs.downloadDependencies()
       nodejs.makeArtifacts()

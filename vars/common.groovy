@@ -54,3 +54,8 @@ def publishArtifacts() {
   }
 }
 
+def unitTests() {
+  stage('Run Unit Tests') {
+    println 'Running Unit Tests'
+  }
+}

@@ -14,7 +14,7 @@ def call() {
 
     common.unitTests()
     common.integrationTests()
-    
+    common.sonarScan()
     if(env.TYPE == "nodejs") {
       nodejs.downloadDependencies()
       nodejs.makeArtifacts()

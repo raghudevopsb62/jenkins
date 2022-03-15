@@ -59,3 +59,11 @@ def unitTests() {
     println 'Running Unit Tests'
   }
 }
+
+def integrationTests() {
+  stage('Run Integration Tests') {
+    println 'Running Integration Tests'
+  }
+}
+
+

@@ -68,7 +68,7 @@ def integrationTests() {
 
 
 def sonarScan() {
-  stage('Run Integration Tests') {
+  stage('Sonar Scan') {
     withCredentials([string(credentialsId: 'SONAR', variable: 'TOKEN')]) {
       sh '''               
         sonar-scanner -Dsonar.projectKey=${COMPONENT} -Dsonar.sources=.

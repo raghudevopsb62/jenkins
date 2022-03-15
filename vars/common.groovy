@@ -72,6 +72,7 @@ def sonarScan() {
     withCredentials([string(credentialsId: 'SONAR', variable: 'TOKEN')]) {
       sh '''               
         sonar-scanner -Dsonar.login=${TOKEN} -Dsonar.projectKey=${COMPONENT} -Dsonar.sources=. -Dsonar.host.url=http://172.31.2.202:9000
+        sonar-quality-gate.sh admin admin123 172.31.2.202 ${COMPONENT}
       '''
     }
   }

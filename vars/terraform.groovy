@@ -19,6 +19,7 @@ def call() {
         steps {
           sh '''
             cd mutable
+            terrafile -f env-${APPLY_ENV}/Terrafile
             terraform init -backend-config=env-${APPLY_ENV}/backend.tfvars
           '''
         }

@@ -5,6 +5,7 @@ Terraform,VPC,https://github.com/raghudevopsb62/terraform-vpc,123456780,yes
 Terraform,DB,https://github.com/raghudevopsb62/terraform-databases,123456781,yes
 Terraform,ALB,https://github.com/raghudevopsb62/terraform-mutable-alb,123456779,yes
 Terraform,Muable-Ec2-Module,https://github.com/raghudevopsb62/terraform-mutable-ec2.git,123456782,yes
+Terraform,Cart,https://github.com/raghudevopsb62/cart.git,123456782,yes,mutable/Jenkinsfile
 CI,cart,https://github.com/raghudevopsb62/cart.git,123456784,yes
 CI,catalogue,https://github.com/raghudevopsb62/catalogue.git,123456785,yes
 CI,user,https://github.com/raghudevopsb62/user.git,123456786,yes
@@ -104,8 +105,13 @@ EOF
   NAME=$(echo $job | awk -F , '{print $2}')
   JOB_NAME="$DIR/$NAME"
   GIT_URL=$(echo $job | awk -F , '{print $3}')
+  if [ -n "$(echo $job | awk -F , '{print $6}')" ]; then
+    FILE=$(echo $job | awk -F , '{print $6}')
+  else
+    FILE=Jenkinsfile
+  fi
 
-  sed -i -e "s|GIT_URL|${GIT_URL}|" -e "s|JOB_ID|${JOB_ID}|" /tmp/job.xml
+  sed -i -e "s|GIT_URL|${GIT_URL}|" -e "s|JOB_ID|${JOB_ID}|" -e "s|Jenkinsfile|${FILE}|" /tmp/job.xml
   sed -i -e "s|FOLDER|${DIR}|"  /tmp/folder.xml
   cat /tmp/folder.xml | java -jar ~/jenkins-cli.jar -auth admin:admin -s http://172.31.14.253:8080/ -webSocket create-job ${DIR}
   cat /tmp/job.xml | java -jar ~/jenkins-cli.jar -auth admin:admin -s http://172.31.14.253:8080/ -webSocket create-job ${JOB_NAME}

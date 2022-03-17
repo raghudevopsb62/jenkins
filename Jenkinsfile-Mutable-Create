@@ -78,6 +78,7 @@ pipeline {
               sh '''
                 cd mutable
                 terrafile -f env-${ENV}/Terrafile
+                export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
                 terraform init -backend-config=env-${ENV}/backend.tfvars
                 terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
               '''
@@ -92,6 +93,7 @@ pipeline {
               sh '''
                 cd mutable
                 terrafile -f env-${ENV}/Terrafile
+                export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
                 terraform init -backend-config=env-${ENV}/backend.tfvars
                 terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
               '''
@@ -106,6 +108,7 @@ pipeline {
               sh '''
                 cd mutable
                 terrafile -f env-${ENV}/Terrafile
+                export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
                 terraform init -backend-config=env-${ENV}/backend.tfvars
                 terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
               '''
@@ -120,6 +123,7 @@ pipeline {
               sh '''
                 cd mutable
                 terrafile -f env-${ENV}/Terrafile
+                export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
                 terraform init -backend-config=env-${ENV}/backend.tfvars
                 terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
               '''

@@ -62,6 +62,7 @@ pipeline {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/cart.git'
               sh '''
                 cd mutable
+                terrafile -f env-${ENV}/Terrafile
                 terraform init -backend-config=env-${ENV}/backend.tfvars
                 terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
               '''
@@ -75,6 +76,7 @@ pipeline {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/catalogue.git'
               sh '''
                 cd mutable
+                terrafile -f env-${ENV}/Terrafile
                 terraform init -backend-config=env-${ENV}/backend.tfvars
                 terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
               '''
@@ -88,6 +90,7 @@ pipeline {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/user.git'
               sh '''
                 cd mutable
+                terrafile -f env-${ENV}/Terrafile
                 terraform init -backend-config=env-${ENV}/backend.tfvars
                 terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
               '''
@@ -101,6 +104,7 @@ pipeline {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/shipping.git'
               sh '''
                 cd mutable
+                terrafile -f env-${ENV}/Terrafile
                 terraform init -backend-config=env-${ENV}/backend.tfvars
                 terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
               '''
@@ -114,6 +118,7 @@ pipeline {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/payment.git'
               sh '''
                 cd mutable
+                terrafile -f env-${ENV}/Terrafile
                 terraform init -backend-config=env-${ENV}/backend.tfvars
                 terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
               '''

@@ -58,56 +58,66 @@ pipeline {
 
         stage('CART') {
           steps {
-            git branch: 'main', url: 'https://github.com/raghudevopsb62/cart.git'
-            sh '''
-              cd mutable
-              terraform init -backend-config=env-${ENV}/backend.tfvars
-              terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
-            '''
+            dir('CART') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/cart.git'
+              sh '''
+                cd mutable
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
           }
         }
 
         stage('CATALOGUE') {
           steps {
-            git branch: 'main', url: 'https://github.com/raghudevopsb62/catalogue.git'
-            sh '''
-              cd mutable
-              terraform init -backend-config=env-${ENV}/backend.tfvars
-              terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
-            '''
+            dir('CATALOGUE') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/catalogue.git'
+              sh '''
+                cd mutable
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
           }
         }
 
         stage('USER') {
           steps {
-            git branch: 'main', url: 'https://github.com/raghudevopsb62/user.git'
-            sh '''
-              cd mutable
-              terraform init -backend-config=env-${ENV}/backend.tfvars
-              terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
-            '''
+            dir('USER') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/user.git'
+              sh '''
+                cd mutable
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
           }
         }
 
         stage('SHIPPING') {
           steps {
-            git branch: 'main', url: 'https://github.com/raghudevopsb62/shipping.git'
-            sh '''
-              cd mutable
-              terraform init -backend-config=env-${ENV}/backend.tfvars
-              terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
-            '''
+            dir('SHIPPING') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/shipping.git'
+              sh '''
+                cd mutable
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
           }
         }
 
         stage('PAYMENT') {
           steps {
-            git branch: 'main', url: 'https://github.com/raghudevopsb62/payment.git'
-            sh '''
-              cd mutable
-              terraform init -backend-config=env-${ENV}/backend.tfvars
-              terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
-            '''
+            dir('PAYMENT') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/payment.git'
+              sh '''
+                cd mutable
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform apply -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
           }
         }
 

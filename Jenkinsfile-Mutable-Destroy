@@ -1,0 +1,159 @@
+pipeline {
+  agent {
+    node {
+      label 'workstation'
+    }
+  }
+
+  parameters {
+    choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Pick Env')
+  }
+
+  stages {
+
+    stage('FRONTEND') {
+      steps {
+        dir('FRONTEND') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/frontend.git'
+          sh '''
+            cd mutable
+            terrafile -f env-${ENV}/Terrafile
+            export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
+            terraform init -backend-config=env-${ENV}/backend.tfvars
+            terraform destroy -auto-approve -var-file=env-${ENV}/main.tfvars
+          '''
+        }
+      }
+    }
+
+
+
+    stage('AppComponents') {
+      parallel {
+
+        stage('CART') {
+          steps {
+            dir('CART') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/cart.git'
+              sh '''
+                cd mutable
+                terrafile -f env-${ENV}/Terrafile
+                export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform destroy -auto-approve -var-file=env-${ENV}/main.tfvars 
+              '''
+            }
+          }
+        }
+
+        stage('CATALOGUE') {
+          steps {
+            dir('CATALOGUE') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/catalogue.git'
+              sh '''
+                cd mutable
+                terrafile -f env-${ENV}/Terrafile
+                export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform destroy -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
+          }
+        }
+
+        stage('USER') {
+          steps {
+            dir('USER') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/user.git'
+              sh '''
+                cd mutable
+                terrafile -f env-${ENV}/Terrafile
+                export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform destroy -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
+          }
+        }
+
+        stage('SHIPPING') {
+          steps {
+            dir('SHIPPING') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/shipping.git'
+              sh '''
+                cd mutable
+                terrafile -f env-${ENV}/Terrafile
+                export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform destroy -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
+          }
+        }
+
+        stage('PAYMENT') {
+          steps {
+            dir('PAYMENT') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/payment.git'
+              sh '''
+                cd mutable
+                terrafile -f env-${ENV}/Terrafile
+                export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform destroy -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
+          }
+        }
+
+      }
+    }
+
+
+    stage('DB-n-ALB') {
+      parallel {
+
+        stage('DB') {
+          steps {
+            dir('DB') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/terraform-databases.git'
+              sh '''
+                terraform init -backend-config=${ENV}-backend.tfvars
+                terraform destroy -auto-approve -var-file=${ENV}.tfvars
+              '''
+            }
+          }
+        }
+
+        stage('ALB') {
+          steps {
+            dir('ALB') {
+              git branch: 'main', url: 'https://github.com/raghudevopsb62/terraform-mutable-alb.git'
+              sh '''
+                terraform init -backend-config=env-${ENV}/backend.tfvars
+                terraform destroy -auto-approve -var-file=env-${ENV}/main.tfvars
+              '''
+            }
+          }
+        }
+
+      }
+    }
+
+
+
+    stage('VPC') {
+      steps {
+        dir('VPC') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/terraform-vpc.git'
+          sh '''
+            terraform init -backend-config=env-${ENV}/backend.tfvars
+            terraform destroy -auto-approve -var-file=env-${ENV}/main.tfvars
+          '''
+        }
+      }
+    }
+
+  }
+
+}

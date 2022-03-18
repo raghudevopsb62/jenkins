@@ -9,6 +9,11 @@ pipeline {
     choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Pick Env')
   }
 
+  options {
+    ansiColor('xterm')
+  }
+
+
   stages {
 
     stage('VPC') {

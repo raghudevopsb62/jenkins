@@ -20,6 +20,7 @@ def call() {
           sh '''
             cd mutable
             terrafile -f env-${APPLY_ENV}/Terrafile
+            export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
             terraform init -backend-config=env-${APPLY_ENV}/backend.tfvars
           '''
         }
@@ -29,6 +30,7 @@ def call() {
         steps {
           sh '''
             cd mutable
+            export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
             terraform plan -var-file=env-${APPLY_ENV}/main.tfvars
           '''
         }
@@ -38,6 +40,7 @@ def call() {
         steps {
           sh '''
             cd mutable
+            export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
             terraform apply -auto-approve -var-file=env-${APPLY_ENV}/main.tfvars
           '''
         }

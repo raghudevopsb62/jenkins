@@ -7,6 +7,7 @@ def call() {
 
     parameters {
       string(name: 'APPLY_ENV', defaultValue: 'dev', description: 'On which env you want to run?')
+      string(name: 'APP_VERSION', defaultValue: '0.0.0', description: 'Which App Version?')
     }
 
     options {

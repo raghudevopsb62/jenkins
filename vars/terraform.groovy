@@ -32,7 +32,7 @@ def call() {
           sh '''
             cd mutable
             export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
-            terraform plan -var-file=env-${APPLY_ENV}/main.tfvars
+            terraform plan -var-file=env-${APPLY_ENV}/main.tfvars -var APP_VERSION=${APP_VERSION}
           '''
         }
       }
@@ -42,7 +42,7 @@ def call() {
           sh '''
             cd mutable
             export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
-            terraform apply -auto-approve -var-file=env-${APPLY_ENV}/main.tfvars
+            terraform apply -auto-approve -var-file=env-${APPLY_ENV}/main.tfvars -var APP_VERSION=${APP_VERSION}
           '''
         }
       }

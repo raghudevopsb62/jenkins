@@ -86,8 +86,8 @@ def publishAMI() {
         sh '''
           export TF_VAR_APP_VERSION=$(cat VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#||")
           terraform init 
-          #terraform apply -auto-approve 
-          #terraform state rm module.ami.aws_ami_from_instance.ami
+          terraform apply -auto-approve 
+          terraform state rm module.ami.aws_ami_from_instance.ami
           terraform destroy -auto-approve
         '''
       }

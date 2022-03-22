@@ -33,9 +33,9 @@ def call() {
       nginx.makeArtifacts()
     }
 
-    common.publishAMI()
-
     common.publishArtifacts()
+    common.publishAMI()
     common.createRelease(s.GIT_URL)
   }
 }
+

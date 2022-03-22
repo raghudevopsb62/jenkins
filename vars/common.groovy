@@ -87,7 +87,7 @@ def publishAMI() {
           export TF_VAR_APP_VERSION=$(cat VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#||")
           terraform init 
           terraform apply -auto-approve 
-          terraform show
+          terraform state list
         '''
       }
     }

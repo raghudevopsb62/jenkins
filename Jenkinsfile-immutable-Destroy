@@ -16,7 +16,7 @@ pipeline {
 //        dir('FRONTEND') {
 //          git branch: 'main', url: 'https://github.com/raghudevopsb62/frontend.git'
 //          sh '''
-//            cd mutable
+//            cd immutable
 //            terrafile -f env-${ENV}/Terrafile
 //            export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
 //            terraform init -backend-config=env-${ENV}/backend.tfvars
@@ -36,7 +36,7 @@ pipeline {
             dir('CART') {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/cart.git'
               sh '''
-                cd mutable
+                cd immutable
                 terrafile -f env-${ENV}/Terrafile
                 export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
                 terraform init -backend-config=env-${ENV}/backend.tfvars
@@ -51,7 +51,7 @@ pipeline {
             dir('CATALOGUE') {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/catalogue.git'
               sh '''
-                cd mutable
+                cd immutable
                 terrafile -f env-${ENV}/Terrafile
                 export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
                 terraform init -backend-config=env-${ENV}/backend.tfvars
@@ -66,7 +66,7 @@ pipeline {
             dir('USER') {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/user.git'
               sh '''
-                cd mutable
+                cd immutable
                 terrafile -f env-${ENV}/Terrafile
                 export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
                 terraform init -backend-config=env-${ENV}/backend.tfvars
@@ -81,7 +81,7 @@ pipeline {
             dir('SHIPPING') {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/shipping.git'
               sh '''
-                cd mutable
+                cd immutable
                 terrafile -f env-${ENV}/Terrafile
                 export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
                 terraform init -backend-config=env-${ENV}/backend.tfvars
@@ -96,7 +96,7 @@ pipeline {
             dir('PAYMENT') {
               git branch: 'main', url: 'https://github.com/raghudevopsb62/payment.git'
               sh '''
-                cd mutable
+                cd immutable
                 terrafile -f env-${ENV}/Terrafile
                 export TF_VAR_APP_VERSION=`cat ../VERSION | grep ^# | head -1 | sed -e 's/#//'`
                 terraform init -backend-config=env-${ENV}/backend.tfvars

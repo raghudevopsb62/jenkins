@@ -47,6 +47,14 @@ def call() {
         }
       }
 
+      stage('Instance Refresh') {
+        steps {
+          sh '''
+            aws autoscaling start-instance-refresh --auto-scaling-group-name ${COMPONENT}-${APPLY_ENV} --preferences \'{"InstanceWarmup": 400, "MinHealthyPercentage": 50}\'
+          '''
+        }
+      }
+
     }
 
     post {

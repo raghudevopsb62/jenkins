@@ -111,7 +111,7 @@ def dockerBuild() {
 
 def dockerPush() {
   if (!env.skipRemainingStages) {
-    stage('Docker Build') {
+    stage('Docker Push') {
       ansiColor('xterm') {
         sh '''
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 739561048503.dkr.ecr.us-east-1.amazonaws.com

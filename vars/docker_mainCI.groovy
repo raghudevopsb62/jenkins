@@ -10,7 +10,7 @@ def call() {
 
     sh 'find . | grep -v \'^.$\'  | xargs rm -rf'
     def s = checkout scm
-    common.checkRelease()
+    //common.checkRelease()
     common.dockerBuild()
     common.dockerPush()
   }

@@ -11,8 +11,8 @@ def call() {
     sh 'find . | grep -v \'^.$\'  | xargs rm -rf'
     def s = checkout scm
     common.checkRelease()
-    commong.dockerBuild()
-    commong.dockerPush()
+    common.dockerBuild()
+    common.dockerPush()
   }
 }
 

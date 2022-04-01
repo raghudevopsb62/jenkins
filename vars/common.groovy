@@ -114,6 +114,7 @@ def dockerPush() {
     stage('Docker Build') {
       ansiColor('xterm') {
         sh '''
+          aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 739561048503.dkr.ecr.us-east-1.amazonaws.com
           APP_VERSION=$(cat VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#||")
           docker push 739561048503.dkr.ecr.us-east-1.amazonaws.com/${COMPONENT}:${APP_VERSION} 
         '''

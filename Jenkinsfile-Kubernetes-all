@@ -1,0 +1,118 @@
+pipeline {
+  agent {
+    node {
+      label 'workstation'
+    }
+  }
+
+  parameters {
+//    choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Pick Env')
+    string(name: 'COMPONENT', defaultValue: '', description: 'Component Name')
+  }
+
+  options {
+    ansiColor('xterm')
+  }
+
+
+  stages {
+
+    stage('Frontend') {
+      steps {
+        dir('CODE') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/frontend.git'
+        }
+        dir('HELM') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/roboshop-helm-chart.git'
+          sh '''
+            TAG=$(cat ../CODE/VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#||")
+            helm upgrade -i  ${COMPONENT} . -f ../CODE/k8s/dev-helm.yml -n dev --set image.tag=${TAG}
+          '''
+        }
+      }
+    }
+
+    stage('Cart') {
+      steps {
+        dir('CODE') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/cart.git'
+        }
+        dir('HELM') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/roboshop-helm-chart.git'
+          sh '''
+            TAG=$(cat ../CODE/VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#||")
+            helm upgrade -i  ${COMPONENT} . -f ../CODE/k8s/dev-helm.yml -n dev --set image.tag=${TAG}
+          '''
+        }
+      }
+    }
+
+    stage('Catalogue') {
+      steps {
+        dir('CODE') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/catalogue.git'
+        }
+        dir('HELM') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/roboshop-helm-chart.git'
+          sh '''
+            TAG=$(cat ../CODE/VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#||")
+            helm upgrade -i  ${COMPONENT} . -f ../CODE/k8s/dev-helm.yml -n dev --set image.tag=${TAG}
+          '''
+        }
+      }
+    }
+
+    stage('User') {
+      steps {
+        dir('CODE') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/user.git'
+        }
+        dir('HELM') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/roboshop-helm-chart.git'
+          sh '''
+            TAG=$(cat ../CODE/VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#||")
+            helm upgrade -i  ${COMPONENT} . -f ../CODE/k8s/dev-helm.yml -n dev --set image.tag=${TAG}
+          '''
+        }
+      }
+    }
+
+    stage('Payment') {
+      steps {
+        dir('CODE') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/payment.git'
+        }
+        dir('HELM') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/roboshop-helm-chart.git'
+          sh '''
+            TAG=$(cat ../CODE/VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#||")
+            helm upgrade -i  ${COMPONENT} . -f ../CODE/k8s/dev-helm.yml -n dev --set image.tag=${TAG}
+          '''
+        }
+      }
+    }
+
+    stage('Shipping') {
+      steps {
+        dir('CODE') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/shipping.git'
+        }
+        dir('HELM') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb62/roboshop-helm-chart.git'
+          sh '''
+            TAG=$(cat ../CODE/VERSION | grep "^#[0-9].[0-9].[0-9]" | head -1|sed -e "s|#||")
+            helm upgrade -i  ${COMPONENT} . -f ../CODE/k8s/dev-helm.yml -n dev --set image.tag=${TAG}
+          '''
+        }
+      }
+    }
+
+  }
+
+  post {
+    always{
+      cleanWs()
+    }
+  }
+
+}

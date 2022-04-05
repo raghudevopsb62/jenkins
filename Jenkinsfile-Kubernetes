@@ -37,7 +37,7 @@ pipeline {
         dir('HELM') {
           git branch: 'main', url: 'https://github.com/raghudevopsb62/roboshop-helm-chart.git'
           sh '''
-            helm install ${COMPONENT} . -f ../CODE/dev-helm.yml -n dev
+            helm install ${COMPONENT} . -f ../CODE/k8s/dev-helm.yml -n dev
           '''
         }
       }

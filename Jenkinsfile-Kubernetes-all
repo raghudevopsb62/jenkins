@@ -4,12 +4,7 @@ pipeline {
       label 'workstation'
     }
   }
-
-  parameters {
-//    choice(name: 'ENV', choices: ['dev', 'prod'], description: 'Pick Env')
-    string(name: 'COMPONENT', defaultValue: '', description: 'Component Name')
-  }
-
+  
   options {
     ansiColor('xterm')
   }

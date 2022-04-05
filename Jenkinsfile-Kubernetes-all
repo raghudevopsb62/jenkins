@@ -4,7 +4,7 @@ pipeline {
       label 'workstation'
     }
   }
-  
+
   options {
     ansiColor('xterm')
   }
@@ -14,6 +14,7 @@ pipeline {
 
     stage('Frontend') {
       steps {
+        sh 'rm -rf CODE HELM'
         dir('CODE') {
           git branch: 'main', url: 'https://github.com/raghudevopsb62/frontend.git'
         }
@@ -29,6 +30,7 @@ pipeline {
 
     stage('Cart') {
       steps {
+        sh 'rm -rf CODE HELM'
         dir('CODE') {
           git branch: 'main', url: 'https://github.com/raghudevopsb62/cart.git'
         }
@@ -44,6 +46,7 @@ pipeline {
 
     stage('Catalogue') {
       steps {
+        sh 'rm -rf CODE HELM'
         dir('CODE') {
           git branch: 'main', url: 'https://github.com/raghudevopsb62/catalogue.git'
         }
@@ -59,6 +62,7 @@ pipeline {
 
     stage('User') {
       steps {
+        sh 'rm -rf CODE HELM'
         dir('CODE') {
           git branch: 'main', url: 'https://github.com/raghudevopsb62/user.git'
         }
@@ -74,6 +78,7 @@ pipeline {
 
     stage('Payment') {
       steps {
+        sh 'rm -rf CODE HELM'
         dir('CODE') {
           git branch: 'main', url: 'https://github.com/raghudevopsb62/payment.git'
         }
@@ -89,6 +94,7 @@ pipeline {
 
     stage('Shipping') {
       steps {
+        sh 'rm -rf CODE HELM'
         dir('CODE') {
           git branch: 'main', url: 'https://github.com/raghudevopsb62/shipping.git'
         }
